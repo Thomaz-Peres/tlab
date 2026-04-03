@@ -1,0 +1,12 @@
+services:
+  omada-controller:
+    image: mbentley/omada-controller:latest
+    container_name: omada-controller
+    restart: unless-stopped
+    environment:
+      - PUID=1000
+      - PGID=1000
+    volumes:
+      - ./omada/data:/opt/tplink/efs/data
+      - ./omada/logs:/opt/tplink/efs/logs
+    network_mode: host

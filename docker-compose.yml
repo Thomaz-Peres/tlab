@@ -1,0 +1,6 @@
+name: tps-homelab
+
+include:
+  - ./proxy/docker-compose.yml
+  - ./homepage/docker-compose.yml
+  - ./omada/docker-compose.yml

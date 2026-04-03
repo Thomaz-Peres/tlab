@@ -1,0 +1,20 @@
+services:
+  app:
+    image: 'jc21/nginx-proxy-manager:latest'
+    restart: unless-stopped
+
+    ports:
+      - '80:80'   # Standard web traffic
+      - '81:81'   # The Management Dashboard
+      - '443:443' # Secure (SSL) traffic
+
+
+    environment:
+      TZ: "America/Sao_Paulo"
+      INITIAL_ADMIN_EMAIL: your@email
+      INITIAL_ADMIN_PASSWORD: yourPassword****
+
+
+    volumes:
+      - ./data:/data
+      - ./letsencrypt:/etc/letsencrypt
