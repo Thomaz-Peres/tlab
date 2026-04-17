@@ -1,43 +1,36 @@
 title: Tps homelab
 theme: dark
 color: slate
-background: /images/background.png
+background: /images/bg2.jpg
 backgroundOpacity: 0.83
 
-
-cardBlur: xl
-language: pt
+cardBlur: xs
 
 disableCollapse: true
 useEqualHeights: true
 
 showStats: true
-
 fullWidth: true
-
 fadeIn: true
-
-favicon: /icons/amp.webp
-
+favicon: /images/amp.webp
 target: _blank
 
 
 layout:
-  - Geral:
-      header: false
-      style: row
-      columns: 5
-  - Monitoramento:
-      header: false
-      style: row
-      columns: 3
-  - Note:
-      icon: /icons/bars.svg
-      header: true
-      style: row
-      columns: 2
-  - Links:
-      icon: /icons/link.svg
-      header: true
-      style: row
-      columns: 3
+  # Monitoramento:
+  #   style: row
+  #   columns: 3
+  # Media:
+  #   icon: /icons/icon_video.png
+  #   style: row
+  #   columns: 3
+  # Downloaders:
+  #   icon: /icons/icon_download.png
+  Network:
+    icon: /icons/icon_network.png
+  Applications:
+    icon: /icons/icon_apps.png
+  Proxmox Status:
+    icon: /icons/icon_server.png
+    style: row
+    columns: 5

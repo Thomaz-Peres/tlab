@@ -2,7 +2,7 @@ services:
   homepage:
     image: ghcr.io/gethomepage/homepage:latest
     container_name: homepage
-    #env_file: .env
+    env_file: ../.env
     privileged: true
     ports:
       - 3000:3000
@@ -12,7 +12,7 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock:ro # (optional) for docker integrations
     restart: unless-stopped
     environment:
-      - PUID=1000
-      - PGID=1000
-      - HOMEPAGE_ALLOWED_HOSTS=192.168.2.126:3000,homepage.home.lab
-      - TZ=America/Sao_Paulo
+      - PUID=${PUID}
+      - PGID=${PGID}
+      - HOMEPAGE_ALLOWED_HOSTS=${HOSTS}
+      - TZ=${TZ}

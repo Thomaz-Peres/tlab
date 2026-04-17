@@ -1,7 +1,78 @@
-- Group A:
+- Network:
     - Omada Controller:
-        href: https://omada.home.lab/
+        icon: /images/omada.svg
+        href: {{HOMEPAGE_VAR_TPLURL}}
+        ping: {{HOMEPAGE_VAR_TPLURL}}
+        statusStyle: 'dot'
+        description: Router
+        widget:
+            type: omada
+            url: {{HOMEPAGE_VAR_TPLURL}}
+            username: {{PROXY_EMAIL}}
+            password: {{PROXY_PASSWD}}
+            fields: ["alerts", "activeUser", "connectedAp"]
 
-- Group B:
-    - Pihole:
-        href: https://pihole.home.lab/admin
+    # - SpeedTest:
+    #     icon: speedtest-tracker.png
+    #     href: {{HOMEPAGE_VAR_SPEEDURL}}
+    #     statusStyle: 'dot'
+    #     description: Gota go fast 🐌
+    #     container: speedtest-tracker
+    #     widget:
+    #         type: speedtest
+    #         url: {{HOMEPAGE_VAR_SPEEDURL}}
+    #         version: 2 # optional, default is 1
+    #         key: {{HOMEPAGE_VAR_SPEEDKEY}}
+    #         bitratePrecision: 1 # optional, default is 0
+
+    - Nginx Proxy Manager:
+        icon: /images/nginx-proxy-manager.svg
+        href: {{HOMEPAGE_VAR_PROXY}}
+        ping: {{HOMEPAGE_VAR_PROXY}}
+        statusStyle: 'dot'
+        description: ReverseProxy Service
+        widget:
+            type: npm
+            url: {{HOMEPAGE_VAR_PROXY}}
+            username: {{PROXY_EMAIL}}
+            password: {{PROXY_PASSWD}}
+
+- Applications:
+    - Proxmox:
+        icon: /images/proxmox.svg
+        href: {{HOMEPAGE_VAR_PROXMOXURL}}
+        ping: {{HOMEPAGE_VAR_PROXMOXURL}}
+        statusStyle: 'dot'
+        description: Server Manager
+        widget:
+            type: proxmox
+            url: {{HOMEPAGE_VAR_PROXMOXURL}}
+            username: {{HOMEPAGE_VAR_PROXMOXTOKEN}}
+            password: {{HOMEPAGE_VAR_PROXMOXSECRET}}
+            # node:
+
+- Proxmox Status:
+    - DNS:
+        icon: /images/pi-hole.svg
+        href: {{HOMEPAGE_VAR_DNSURL}}
+        description: DNS Server
+        # proxmoxNode: Home1
+        proxmoxVMID: 101
+        proxmoxType: lxc
+        showStats: true
+    - Zomboid:
+        icon: /images/zomboid.png
+        # href: {{HOMEPAGE_VAR_DN}}
+        description: Zomboid Server
+        # proxmoxNode: Home1
+        proxmoxVMID: 100
+        proxmoxType: vm
+        showStats: true
+    - Docker:
+        icon: /images/docker.svg
+        # href: {{HOMEPAGE_VAR_DN}}
+        description: Docker
+        # proxmoxNode: Home1
+        proxmoxVMID: 103
+        proxmoxType: vm
+        showStats: true
