@@ -1,0 +1,4 @@
+name: management
+
+include:
+  - ./omada/docker-compose.yml
