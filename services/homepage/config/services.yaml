@@ -1,13 +1,13 @@
 - Network:
     - Omada Controller:
         icon: /images/omada.svg
-        href: {{HOMEPAGE_VAR_TPLURL}}
-        ping: {{HOMEPAGE_VAR_TPLURL}}
+        href: {{HOMEPAGE_VAR_URL}}
+        ping: {{HOMEPAGE_VAR_URL}}
         statusStyle: 'dot'
         description: Router
         widget:
             type: omada
-            url: {{HOMEPAGE_VAR_TPLURL}}
+            url: {{HOMEPAGE_VAR_URL}}
             username: {{PROXY_EMAIL}}
             password: {{PROXY_PASSWD}}
             fields: ["alerts", "activeUser", "connectedAp"]

@@ -1,0 +1,24 @@
+services:
+  vaultwarden:
+    image: vaultwarden/server:latest
+    container_name: vaultwarden
+    restart: always
+    env_file: ../.env
+    environment:
+      # Obrigatório atrás de reverse proxy: o web vault só loga em HTTPS
+      # (WebCrypto exige contexto seguro). Preencher VW_DOMAIN no .env
+      # quando o nome no NPM estiver definido, ex.: https://vault.home.lab
+      DOMAIN: ${VW_DOMAIN}
+      SIGNUPS_ALLOWED: "true" # trocar pra "false" depois de criar sua conta
+      # Painel /admin: só habilitar se precisar, e sempre via hash Argon2 no .env
+      # (gerar com: docker run --rm -it vaultwarden/server /vaultwarden hash)
+      # ADMIN_TOKEN: ${VW_ADMIN_TOKEN}
+    volumes:
+      - ./vw-data:/data # cofre inteiro — incluir na rotina de backup
+    ports:
+      - 11001:80
+    networks:
+      - vaultwarden
+
+networks:
+  vaultwarden:

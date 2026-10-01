@@ -1,0 +1,10 @@
+name: apps
+
+# VM 104 — Docker APPS (VLAN 50). Sobe tudo desta VM de uma vez:
+#   docker compose up -d
+# Cada serviço mantém sua network própria (declarada no compose dele),
+# então o include não colapsa todo mundo numa network só.
+
+include:
+  - ./homepage/compose.yml
+  - ./vaultwarden/compose.yml
