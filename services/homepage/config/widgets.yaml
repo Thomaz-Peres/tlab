@@ -1,5 +1,4 @@
 ---
-# For configuration options and examples, please see:
 # https://gethomepage.dev/configs/info-widgets/
 
 - resources:
@@ -10,3 +9,19 @@
 - search:
     provider: duckduckgo
     target: _blank
+
+- openmeteo:
+    label: São Paulo
+    latitude: -23.55
+    longitude: -46.63
+    timezone: America/Sao_Paulo
+    units: metric
+    cache: 15
+
+- datetime:
+    locale: pt-BR
+    text_size: md
+    format:
+      dateStyle: short
+      timeStyle: short
+      hour12: false

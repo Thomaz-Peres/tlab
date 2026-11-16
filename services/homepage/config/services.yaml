@@ -1,78 +1,89 @@
-- Network:
-    - Omada Controller:
-        icon: /images/omada.svg
-        href: {{HOMEPAGE_VAR_URL}}
-        ping: {{HOMEPAGE_VAR_URL}}
-        statusStyle: 'dot'
-        description: Router
-        widget:
-            type: omada
-            url: {{HOMEPAGE_VAR_URL}}
-            username: {{PROXY_EMAIL}}
-            password: {{PROXY_PASSWD}}
-            fields: ["alerts", "activeUser", "connectedAp"]
+---
+# https://gethomepage.dev/configs/services/
+# Todos os valores vêm do .env (HOMEPAGE_VAR_*). Ver services/.env-example.
 
-    # - SpeedTest:
-    #     icon: speedtest-tracker.png
-    #     href: {{HOMEPAGE_VAR_SPEEDURL}}
-    #     statusStyle: 'dot'
-    #     description: Gota go fast 🐌
-    #     container: speedtest-tracker
-    #     widget:
-    #         type: speedtest
-    #         url: {{HOMEPAGE_VAR_SPEEDURL}}
-    #         version: 2 # optional, default is 1
-    #         key: {{HOMEPAGE_VAR_SPEEDKEY}}
-    #         bitratePrecision: 1 # optional, default is 0
+- Infra:
+    - Proxmox:
+        icon: proxmox.svg
+        href: {{HOMEPAGE_VAR_PROXMOX_URL}}
+        siteMonitor: {{HOMEPAGE_VAR_PROXMOX_URL}}
+        description: Hypervisor
+        widget:
+          type: proxmox
+          url: {{HOMEPAGE_VAR_PROXMOX_URL}}
+          username: {{HOMEPAGE_VAR_PROXMOX_TOKEN}}
+          password: {{HOMEPAGE_VAR_PROXMOX_SECRET}}
+          node: {{HOMEPAGE_VAR_PROXMOX_NODE}}
+
+    - OPNsense:
+        icon: opnsense.svg
+        href: {{HOMEPAGE_VAR_OPNSENSE_URL}}
+        siteMonitor: {{HOMEPAGE_VAR_OPNSENSE_URL}}
+        description: Gateway · VM 102
+        proxmoxNode: {{HOMEPAGE_VAR_PROXMOX_NODE}}
+        proxmoxVMID: 102
+
+    - Pi-hole:
+        icon: pi-hole.svg
+        href: {{HOMEPAGE_VAR_PIHOLE_URL}}
+        siteMonitor: {{HOMEPAGE_VAR_PIHOLE_URL}}
+        description: DNS · VM 101
+        proxmoxNode: {{HOMEPAGE_VAR_PROXMOX_NODE}}
+        proxmoxVMID: 101
+        widget:
+          type: pihole
+          url: {{HOMEPAGE_VAR_PIHOLE_URL}}
+          version: 6
+          key: {{HOMEPAGE_VAR_PIHOLE_KEY}}
+
+    - Omada Controller:
+        icon: omada.png
+        href: {{HOMEPAGE_VAR_OMADA_URL}}
+        siteMonitor: {{HOMEPAGE_VAR_OMADA_URL}}
+        description: WiFi · VM 103
+        widget:
+          type: omada
+          url: {{HOMEPAGE_VAR_OMADA_URL}}
+          username: {{HOMEPAGE_VAR_OMADA_USER}}
+          password: {{HOMEPAGE_VAR_OMADA_PASS}}
+          site: Default
+          fields: ["activeUser", "alerts", "connectedAp"]
 
     - Nginx Proxy Manager:
-        icon: /images/nginx-proxy-manager.svg
-        href: {{HOMEPAGE_VAR_PROXY}}
-        ping: {{HOMEPAGE_VAR_PROXY}}
-        statusStyle: 'dot'
-        description: ReverseProxy Service
-        widget:
-            type: npm
-            url: {{HOMEPAGE_VAR_PROXY}}
-            username: {{PROXY_EMAIL}}
-            password: {{PROXY_PASSWD}}
-
-- Applications:
-    - Proxmox:
-        icon: /images/proxmox.svg
-        href: {{HOMEPAGE_VAR_PROXMOXURL}}
-        ping: {{HOMEPAGE_VAR_PROXMOXURL}}
-        statusStyle: 'dot'
-        description: Server Manager
-        widget:
-            type: proxmox
-            url: {{HOMEPAGE_VAR_PROXMOXURL}}
-            username: {{HOMEPAGE_VAR_PROXMOXTOKEN}}
-            password: {{HOMEPAGE_VAR_PROXMOXSECRET}}
-            # node:
-
-- Proxmox Status:
-    - DNS:
-        icon: /images/pi-hole.svg
-        href: {{HOMEPAGE_VAR_DNSURL}}
-        description: DNS Server
-        # proxmoxNode: Home1
-        proxmoxVMID: 101
+        icon: nginx-proxy-manager.svg
+        href: {{HOMEPAGE_VAR_NPM_URL}}
+        siteMonitor: {{HOMEPAGE_VAR_NPM_URL}}
+        description: Reverse proxy · LXC 105
+        proxmoxNode: {{HOMEPAGE_VAR_PROXMOX_NODE}}
+        proxmoxVMID: 105
         proxmoxType: lxc
-        showStats: true
-    - Zomboid:
-        icon: /images/zomboid.png
-        # href: {{HOMEPAGE_VAR_DN}}
-        description: Zomboid Server
-        # proxmoxNode: Home1
-        proxmoxVMID: 100
-        proxmoxType: vm
-        showStats: true
-    - Docker:
-        icon: /images/docker.svg
-        # href: {{HOMEPAGE_VAR_DN}}
-        description: Docker
-        # proxmoxNode: Home1
+        widget:
+          type: npm
+          url: {{HOMEPAGE_VAR_NPM_URL}}
+          username: {{HOMEPAGE_VAR_NPM_USER}}
+          password: {{HOMEPAGE_VAR_NPM_PASS}}
+
+- Apps:
+    - Vaultwarden:
+        icon: vaultwarden.svg
+        href: {{HOMEPAGE_VAR_VAULT_URL}}
+        description: Senhas
+        server: local
+        container: vaultwarden
+
+- Guests:
+    - Docker MGMT:
+        icon: docker.svg
+        description: VM 103
+        proxmoxNode: {{HOMEPAGE_VAR_PROXMOX_NODE}}
         proxmoxVMID: 103
-        proxmoxType: vm
-        showStats: true
+    - Docker APPS:
+        icon: docker.svg
+        description: VM 104
+        proxmoxNode: {{HOMEPAGE_VAR_PROXMOX_NODE}}
+        proxmoxVMID: 104
+    - Zomboid:
+        icon: mdi-gamepad-variant
+        description: VM 100
+        proxmoxNode: {{HOMEPAGE_VAR_PROXMOX_NODE}}
+        proxmoxVMID: 100

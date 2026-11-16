@@ -1,36 +1,31 @@
-title: Tps homelab
+---
+# https://gethomepage.dev/configs/settings/
+title: Homelab
+favicon: /images/amp.webp
 theme: dark
 color: slate
 background: /images/bg2.jpg
 backgroundOpacity: 0.83
-
 cardBlur: xs
 
-disableCollapse: true
-useEqualHeights: true
-
-showStats: true
-fullWidth: true
-fadeIn: true
-favicon: /images/amp.webp
+headerStyle: clean
+statusStyle: dot
 target: _blank
-
+fullWidth: true
+useEqualHeights: true
+disableCollapse: true
+hideVersion: true
 
 layout:
-  # Monitoramento:
-  #   style: row
-  #   columns: 3
-  # Media:
-  #   icon: /icons/icon_video.png
-  #   style: row
-  #   columns: 3
-  # Downloaders:
-  #   icon: /icons/icon_download.png
-  Network:
-    icon: /icons/icon_network.png
-  Applications:
-    icon: /icons/icon_apps.png
-  Proxmox Status:
-    icon: /icons/icon_server.png
+  Infra:
+    icon: mdi-router-network
     style: row
     columns: 5
+  Apps:
+    icon: mdi-apps
+    style: row
+    columns: 4
+  Guests:
+    icon: mdi-server
+    style: row
+    columns: 3
