@@ -1,0 +1,19 @@
+# Proxy de leitura do docker.sock para o Homepage, que roda como PUID (não-root).
+# Só leitura de containers, sem POST. A rede é interna: sem internet,
+# e só quem entra nela (o Homepage) alcança o proxy.
+services:
+  dockerproxy:
+    image: ghcr.io/tecnativa/docker-socket-proxy:v0.5.0
+    container_name: dockerproxy
+    environment:
+      - CONTAINERS=1
+      - POST=0
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    restart: unless-stopped
+    networks:
+      - dockerproxy
+
+networks:
+  dockerproxy:
+    internal: true

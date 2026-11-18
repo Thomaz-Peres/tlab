@@ -6,5 +6,6 @@ name: apps
 # então o include não colapsa todo mundo numa network só.
 
 include:
+  - ./dockerproxy/compose.yml
   - ./homepage/compose.yml
   - ./vaultwarden/compose.yml

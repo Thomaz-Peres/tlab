@@ -8,10 +8,10 @@ services:
     volumes:
       - ./config/:/app/config
       - ./config/images:/app/public/images
-      - /var/run/docker.sock:/var/run/docker.sock:ro # (optional) for docker integrations
     restart: unless-stopped
     networks:
       - homepage
+      - dockerproxy
     environment:
       - PUID=${PUID}
       - PGID=${PGID}
@@ -20,3 +20,5 @@ services:
 
 networks:
   homepage:
+  dockerproxy:
+    internal: true
