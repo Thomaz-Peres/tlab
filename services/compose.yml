@@ -9,3 +9,4 @@ include:
   - ./dockerproxy/compose.yml
   - ./homepage/compose.yml
   - ./vaultwarden/compose.yml
+  - ./speedtest/compose.yml

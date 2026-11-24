@@ -1,3 +1,4 @@
+---
 # https://gethomepage.dev/configs/services/
 # Todos os valores vêm do .env (HOMEPAGE_VAR_*). Ver services/.env-example.
 
@@ -21,10 +22,16 @@
         description: Gateway · VM 102
         proxmoxNode: '{{HOMEPAGE_VAR_PROXMOX_NODE}}'
         proxmoxVMID: 102
+        widget:
+          type: opnsense
+          url: '{{HOMEPAGE_VAR_OPNSENSE_URL}}'
+          username: '{{HOMEPAGE_VAR_OPNSENSE_KEY}}'
+          password: '{{HOMEPAGE_VAR_OPNSENSE_SECRET}}'
+          fields: [ "cpu", "memory" ]
 
     - Pi-hole:
         icon: pi-hole.svg
-        href: '{{HOMEPAGE_VAR_PIHOLE_URL}}'
+        href: '{{HOMEPAGE_VAR_PIHOLE_URL}}/admin'
         siteMonitor: '{{HOMEPAGE_VAR_PIHOLE_URL}}'
         description: DNS · VM 101
         proxmoxNode: '{{HOMEPAGE_VAR_PROXMOX_NODE}}'
@@ -45,7 +52,7 @@
           url: '{{HOMEPAGE_VAR_OMADA_URL}}'
           username: '{{HOMEPAGE_VAR_OMADA_USER}}'
           password: '{{HOMEPAGE_VAR_OMADA_PASS}}'
-          site: Default
+          site: '{{HOMEPAGE_VAR_OMADA_SITE}}'
           fields: ["activeUser", "alerts", "connectedAp"]
 
     - Nginx Proxy Manager:
@@ -69,6 +76,19 @@
         description: Senhas
         server: local
         container: vaultwarden
+
+    - SpeedTest:
+        icon: speedtest-tracker.png
+        href: '{{HOMEPAGE_VAR_SPEEDTEST_APP_URL}}'
+        statusStyle: 'dot'
+        description: Gota go fast 🐌
+        widget:
+          type: speedtest
+          version: 2
+          bitratePrecision: 1
+          fields: ["download", "upload", "ping"]
+          url: '{{HOMEPAGE_VAR_SPEEDTEST_APP_URL}}'
+          key: '{{HOMEPAGE_VAR_SPEEDTEST_TOKEN}}'
 
 - Guests:
     - Docker MGMT:

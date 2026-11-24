@@ -8,13 +8,17 @@ services:
       - PUID=${PUID}
       - PGID=${PGID}
       # APP_KEY obrigatório: gerar com php artisan key:generate ou
-      # `echo -n | openssl rand -base64 32` e salvar como SPEEDTEST_APP_KEY no .env
-      - APP_KEY=${SPEEDTEST_APP_KEY}
+      # `echo -n | openssl rand -base64 32` e salvar como HOMEPAGE_VAR_SPEEDTEST_APP_KEY no .env
+      - APP_KEY=${HOMEPAGE_VAR_SPEEDTEST_APP_KEY}
       # URL exatamente como acessada no navegador. Nome no NPM pendente,
       # ex.: https://speedtest.home.lab — proxy aponta para :8080
-      - APP_URL=${SPEEDTEST_APP_URL}
+      - APP_URL=${HOMEPAGE_VAR_SPEEDTEST_APP_URL}
       - DB_CONNECTION=sqlite
+      - APP_DEBUG=true
+      - ASSET_URL=${HOMEPAGE_VAR_SPEEDTEST_APP_URL}
+      - APP_TIMEZONE=${TZ}
     volumes:
       - ./data:/config
     ports:
       - 8080:80
+      - 8443:443
